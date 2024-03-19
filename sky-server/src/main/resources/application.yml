@@ -4,22 +4,14 @@ server:
 spring:
   profiles:
     active: dev
-    include:
-      - env # 在当前目录下新建 application-env.yml 配置敏感信息
   main:
     allow-circular-references: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver # 驱动名称
     url: jdbc:mysql://localhost:3306/sky_take_out
     username: root
-    password: sql_1
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
-  data:
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      password: 123456
-      timeout: 3000ms
 
 # knife4j配置
 springdoc:
@@ -32,7 +24,7 @@ springdoc:
   group-configs:
     - group: "default"
       paths-to-match: "/**"
-      packages-to-scan: com.github.xiaoymin.boot3
+      packages-to-scan: com.sky.controller
   default-flat-param-object: true
 
 knife4j:
@@ -64,7 +56,3 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
-    # 小程序的jwt配置
-    user-secret-key: itcast
-    user-ttl: 7200000
-    user-token-name: authentication

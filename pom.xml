@@ -28,9 +28,9 @@
         <fastjson>1.2.76</fastjson>
         <commons.lang>2.6</commons.lang>
         <druid>1.2.15</druid>
-        <pagehelper>1.4.7</pagehelper>
+        <pagehelper>1.4.6</pagehelper>
         <aliyun.sdk.oss>3.15.1</aliyun.sdk.oss>
-        <knife4j>4.1.0</knife4j>
+        <knife4j>4.4.0</knife4j>
         <aspectj>1.9.19</aspectj>
         <jjwt>0.9.1</jjwt>
         <jaxb-api>2.3.1</jaxb-api>
