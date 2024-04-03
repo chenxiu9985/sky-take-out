@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.mapper.SetmealMapper">
+    <!--分页查询-->
+    <select id="pageQuery" resultType="com.sky.vo.SetmealVO">
+        select s.id, s.category_id, s.name, s.price, s.status, s.description, s.image,
+               s.create_time, s.update_time, s.create_user, s.update_user, c.name as "category_name"
+        from  sky_take_out.setmeal s join sky_take_out.category c on s.category_id = c.id
+        <where>
+            <if test="name!= null and name != ''" >
+                d.name like concat('%', #{name}, '%')
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and d.status = #{status}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+    <!--根据id查询-->
+    <select id="getById" resultType="com.sky.vo.SetmealVO">
+        select s.id, s.category_id, s.name, s.price, s.status, s.description, s.image,
+               s.create_time, s.update_time, s.create_user, s.update_user, c.name as "category_name"
+        from  sky_take_out.setmeal s join sky_take_out.category c on s.category_id = c.id
+        where id= #{id}
+    </select>
+
+    <!--根据菜品id查询对应的套餐id-->
+    <select id="getSetmealIdsByDishIds" resultType="com.sky.entity.SetmealDish">
+        select setmeal_id from sky_take_out.setmeal_dish where dish_id in
+        <foreach collection="dishIds" item="dishId" separator="," open="(" close=")">
+            #{dishId}
+        </foreach>
+    </select>
+
+
+    <select id="list" parameterType="Setmeal" resultType="Setmeal">
+        select * from sky_take_out.setmeal
+        <where>
+            <if test="name != null"> and name like concat('%',#{name},'%') </if>
+            <if test="categoryId != null"> and category_id = #{categoryId} </if>
+            <if test="status != null"> and status = #{status} </if>
+        </where>
+    </select>
+</mapper>
