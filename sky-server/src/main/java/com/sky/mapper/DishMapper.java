@@ -41,7 +41,7 @@ public interface DishMapper {
 
     /**
      * 根据分类id查询菜品信息
-     * @param categoryId
+     * @param dish
      * @return
      */
     List<Dish> listQuery(Dish dish);
@@ -65,4 +65,12 @@ public interface DishMapper {
      * @param ids
      */
     void deleteByIds(List<Long> ids);
+
+    /**
+     * 根据状态查询菜品数量
+     * @param status
+     * @return
+     */
+    @Select("select count(*) from  sky_take_out.dish where status = #{status}")
+    Integer countByStatus(Integer status);
 }

@@ -4,6 +4,9 @@ import com.sky.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+
 /**
  * @author 26706
  */
@@ -24,4 +27,11 @@ public interface UserMapper {
      * @param user
      */
     void insert(User user);
+
+    /**
+     * 通过时间获取用户数量
+     * @param map
+     * @return
+     */
+    Integer getCountByTime(Map<String, Object> map);
 }

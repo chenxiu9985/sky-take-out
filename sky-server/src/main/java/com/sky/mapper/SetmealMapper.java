@@ -60,4 +60,12 @@ public interface SetmealMapper {
             "from sky_take_out.setmeal_dish sd left join sky_take_out.dish d on sd.dish_id = d.id " +
             "where sd.setmeal_id = #{setmealId}")
     List<DishItemVO> getDishItemBySetmealId(Long setmealId);
+
+    /**
+     * 根据状态查询套餐数量
+     * @param i
+     * @return
+     */
+    @Select("select count(*) from sky_take_out.setmeal where status = #{i}")
+    Integer countByStatus(Integer i);
 }
